@@ -5,3 +5,24 @@
 main{max-width:880px}h1{font-size:32px;letter-spacing:-.6px;margin:28px 0 14px}.top{height:84px}.family{display:none}.workspace{display:block}.instructions{padding:0;margin:0 0 20px;max-width:360px}.instructions label{margin:0 0 7px}.calendar,.results{box-shadow:none;padding:20px}.mobileHint{margin:0 0 16px}.tabs{margin-bottom:22px}.saveBar{margin-top:18px}.top img{width:125px}.best{background:#f4f6ef}.empty{padding:30px 10px}main{padding-bottom:35px}@media(max-width:620px){h1{font-size:29px;margin-top:22px}.calendar{padding:16px 12px}.instructions{max-width:none}}
 
 .slot.blocked{background:repeating-linear-gradient(45deg,#f1f2ec,#f1f2ec 6px,#e8eae1 6px,#e8eae1 12px);border-style:dashed;color:#8a9182;cursor:not-allowed}
+.overlap{margin-bottom:32px}
+.overlap h3,.tableTitle{font-size:20px;font-weight:600;color:var(--ink);margin:0 0 6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:12px 0 18px}
+.chips>span{font-size:14px;color:var(--muted);margin-right:4px}
+.chips button{border:1px solid var(--border);background:#fff;border-radius:999px;padding:6px 12px;font-size:14px;color:var(--ink)}
+.chips button.on{background:var(--green);border-color:var(--green);color:#fff}
+.chips .clear{display:flex;align-items:center;gap:4px;color:var(--muted)}
+.heat{border:1px solid var(--border);border-radius:6px;min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;font-size:16px;transition:box-shadow .15s}
+.heat small{font-size:12px;opacity:.85;min-height:14px}
+.heat:hover{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--olive)}
+.heat.picked{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--orange)}
+.heat.all{border:2px solid var(--orange)}
+.legend{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-top:16px}
+.legend i{width:140px;height:10px;border-radius:5px;background:linear-gradient(90deg,#f4f6ef,#3f632b)}
+.detail{position:sticky;bottom:12px;margin-top:16px;background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 18px;box-shadow:0 8px 24px #3b4c2124;font-size:14px}
+.detailHead{display:flex;justify-content:space-between;align-items:center;color:var(--green);margin-bottom:6px}
+.detailHead button{border:0;background:none;color:var(--muted)}
+.detail p{margin:6px 0;line-height:1.5}
+.tag{display:inline-block;font-weight:600;margin-right:8px;color:var(--muted)}
+.tag.yes{color:#3f632b}.tag.no{color:#99472f}
+.tableTitle{margin-top:8px}
