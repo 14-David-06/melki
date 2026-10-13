@@ -1,6 +1,6 @@
 # Taller 2G 3G — Calendario familiar
 
-Aplicación para recoger la disponibilidad de 11 participantes en ocho fechas de octubre, noviembre y diciembre de 2026, por mañana y tarde.
+Aplicación para recoger la disponibilidad de 11 participantes en nueve fechas de octubre, noviembre y diciembre de 2026, por mañana y tarde.
 
 ## Funciones
 
