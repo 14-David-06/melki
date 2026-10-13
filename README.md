@@ -5,23 +5,29 @@ Aplicación para recoger la disponibilidad de 11 participantes en ocho fechas de
 ## Funciones
 
 - Selección de participante y disponibilidad: pendiente, puedo, no puedo.
-- Respuestas compartidas en Cloudflare D1.
+- Respuestas compartidas en Airtable (tabla `Respuestas`).
 - Resultados por jornada, ordenados por cantidad de participantes disponibles.
 - Exportación CSV y protección contra sobrescrituras desde otra sesión.
 - Diseño adaptable con el logo y colores de Guaicaramo.
 
 ## Desarrollo
 
-Requiere Node.js 22.13 o superior.
+Requiere Node.js 22.13 o superior y un token de Airtable con permisos `data.records:read` y `data.records:write` sobre la base.
 
 ```sh
 npm ci
-npm run build
-node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1 execute DB --local --config dist/server/wrangler.json --persist-to .wrangler/state --file drizzle/0000_yielding_tyger_tiger.sql
-npm run dev -- --hostname 127.0.0.1
+npm run dev
 ```
 
-La migración se aplica una vez a una base local nueva. `npm run dev` muestra la dirección local. La base local es independiente de la de producción.
+Variables en `.env.local`:
+
+```
+AIRTABLE_API_KEY=pat...
+AIRTABLE_BASE_ID=app...
+AIRTABLE_TABLE=Respuestas   # opcional, es el valor por defecto
+```
+
+La tabla `Respuestas` tiene los campos `Persona` (texto), `Votos` (texto largo con JSON), `Revision` (número entero) y `Actualizado` (texto, fecha ISO).
 
 ## Verificación
 
@@ -34,14 +40,19 @@ npm run build
 
 - `app/page.tsx`: interfaz y resultados.
 - `app/globals.css`: estilos.
-- `app/api/responses/route.ts`: lectura, validación y guardado.
+- `app/api/responses/route.ts`: lectura, validación y guardado en Airtable.
 - `lib/calendar.ts`: participantes, fechas y jornadas.
-- `db/schema.ts` y `drizzle/`: esquema y migraciones.
 - `public/guaicaramo.png`: logo de la página oficial de Guaicaramo.
 
 ## Publicación
 
-Este proyecto usa Vinext y Cloudflare Workers con el binding D1 `DB`. `.openai/hosting.json` conserva la configuración de Sites; subir el código a GitHub no publica el sitio ni migra las respuestas. No es un sitio estático compatible directamente con GitHub Pages.
+Se publica en Vercel como proyecto Next.js:
+
+1. Importa el repositorio en Vercel (framework: Next.js, ya fijado en `vercel.json`).
+2. En **Settings → Environment Variables**, define `AIRTABLE_API_KEY` y `AIRTABLE_BASE_ID` (y `AIRTABLE_TABLE` si la tabla tiene otro nombre).
+3. Vuelve a desplegar.
+
+Las respuestas guardadas antes en Cloudflare D1 no se migran automáticamente.
 
 El selector de nombre no autentica a cada participante. Quienes tengan acceso al sitio pueden seleccionar un nombre y modificar su disponibilidad; la audiencia se controla en el alojamiento.
 
